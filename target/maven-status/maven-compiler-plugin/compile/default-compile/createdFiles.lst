@@ -1,0 +1,3 @@
+com\example\testdocker\testdocker\ServletInitializer.class
+com\example\testdocker\testdocker\TestController.class
+com\example\testdocker\testdocker\TestdockerApplication.class
