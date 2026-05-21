@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     environment {
@@ -7,19 +6,17 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/shaan1990/TestGithubActionForDocker.git'
+            }
+        }
 
-       stage('Checkout') {
-           steps {
-               git branch: 'main', url: 'https://github.com/shaan1990/TestGithubActionForDocker.git'
-           }
-       }
-
-
-       stage('Build App') {
-           steps {
-               bat 'mvn clean package'
-           }
-       }
+        stage('Build App') {
+            steps {
+                bat "${tool 'Maven_3.9.16'}\\bin\\mvn clean package"
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -28,28 +25,22 @@ pipeline {
         }
 
         stage('Push Docker Image') {
-
             steps {
-
                 withCredentials([usernamePassword(
                     credentialsId: 'docker-creds',
-                    usernameVariable: 'docker_santanu',
-                    passwordVariable: 'Admin123$'
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
                 )]) {
-
-                    bat 'docker login -u %USER% -p %PASS%'
+                    bat "docker login -u %USER% -p %PASS%"
                     bat "docker push %IMAGE_NAME%"
                 }
             }
         }
 
         stage('Deploy to Kubernetes') {
-
             steps {
-
                 bat 'kubectl apply -f deployment.yaml'
                 bat 'kubectl apply -f service.yaml'
             }
         }
     }
-}
