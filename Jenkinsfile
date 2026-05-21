@@ -15,13 +15,11 @@ pipeline {
        }
 
 
-        stage('Build App') {
-            steps {
-                withMaven(maven: 'Maven_3.9.6') {
-                    bat 'mvn clean package'
-                }
-            }
-        }
+       stage('Build App') {
+           steps {
+               bat 'mvn clean package'
+           }
+       }
 
         stage('Build Docker Image') {
             steps {
