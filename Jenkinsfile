@@ -8,11 +8,12 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/shaan1990/TestGithubActionForDocker.git'
-            }
-        }
+       stage('Checkout') {
+           steps {
+               git branch: 'main', url: 'https://github.com/shaan1990/TestGithubActionForDocker.git'
+           }
+       }
+
 
         stage('Build App') {
             steps {
