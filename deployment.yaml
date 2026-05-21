@@ -20,7 +20,7 @@ spec:
       containers:
         - name: myapp
 
-          image: santanu/myapp:latest
+          image: santanu/myapp:27
 
           ports:
             - containerPort: 8081
