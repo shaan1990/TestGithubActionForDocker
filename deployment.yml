@@ -23,4 +23,4 @@ spec:
           image: santanu/myapp:latest
 
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
