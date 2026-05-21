@@ -11,7 +11,7 @@
 	<groupId>com.example.testdocker</groupId>
 	<artifactId>testdocker</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name/>
 	<description/>
 	<url/>
